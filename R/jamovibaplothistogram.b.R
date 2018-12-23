@@ -19,7 +19,7 @@ jamoviBAplotHistogramClass <- if (requireNamespace('jmvcore')) R6::R6Class(
         data[[method2]] <- jmvcore::toNumeric(data[[method2]])
 
         # calculate the results
-        results <- blandr.statistics( data[[method1]] , data[[method2]] )
+        results <- statistics( data[[method1]] , data[[method2]] )
 
         # standard Jamovi method to pass prepared data over for plotting
         image <- self$results$plot
@@ -34,7 +34,7 @@ jamoviBAplotHistogramClass <- if (requireNamespace('jmvcore')) R6::R6Class(
       if ( !is.null(self$options$method1) && !is.null(self$options$method2) ) {
 
         plotData <- image$state
-        plot <- blandr.plot.normality( plotData )
+        plot <- plot.normality( plotData )
         plot <- plot + ggtheme
         print(plot)
         TRUE

@@ -1,15 +1,15 @@
 #' @title Summary method for \code{blandr} objects
 #'
-#' @description Displays a summary of a blandr object, the result from \code{blandr.statistics}
+#' @description Displays a summary of a blandr object, the result from \code{statistics}
 #'
-#' @param x the results from \code{blandr.statistics}.
+#' @param x the results from \code{statistics}.
 #' @param digits number of significant digits to be used.
 #' @param ... other arguments.
 #'
 #'
 #' @examples
 #'
-#' results = blandr.statistics(Method.B ~ Method.A, data = giavarina.2015)
+#' results = statistics(Method.B ~ Method.A, data = giavarina.2015)
 #' summary(results)
 #'
 #' @export

@@ -4,8 +4,7 @@
 \alias{plot.blandr}
 \title{Plot method for \code{blandr} objects}
 \usage{
-\method{plot}{blandr}(x, method1name = "Method 1",
-  method2name = "Method 2",
+plot.blandr(x, method1name = "Method 1", method2name = "Method 2",
   plotTitle = "Bland-Altman plot for comparison of 2 methods",
   sig.level = 0.95, LoA.mode = 1, annotate = FALSE,
   ciDisplay = TRUE, ciShading = TRUE, normalLow = FALSE,
@@ -16,7 +15,7 @@
   assume.differences.are.normal = TRUE, ...)
 }
 \arguments{
-\item{x}{a blandr class object, the results from \code{blandr.statistics}.}
+\item{x}{a blandr class object, the results from \code{statistics}.}
 
 \item{...}{other arguments.}
 }
@@ -26,7 +25,7 @@ using the in-built rplot drawing functions
 }
 \examples{
 
-results = blandr.statistics( Method.B ~ Method.A , data = giavarina.2015 )
+results = statistics( Method.B ~ Method.A , data = giavarina.2015 )
 results
 plot(results)
 

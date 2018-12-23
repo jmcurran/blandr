@@ -3,13 +3,13 @@
 #' @description Plot a Bland-Altman chart from the results of \code{blandr} objects
 #' using ggplot2 drawing functions
 #'
-#' @param x a blandr class object, the results from \code{blandr.statistics}.
+#' @param x a blandr class object, the results from \code{statistics}.
 #' @param ... other arguments.
 #'
 #'
 #' @examples
 #'
-#' results = blandr.statistics( Method.B ~ Method.A , data = giavarina.2015 )
+#' results = statistics( Method.B ~ Method.A , data = giavarina.2015 )
 #' results
 #' ggplot(results)
 #'

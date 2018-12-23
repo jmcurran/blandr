@@ -19,7 +19,7 @@ jamoviBAanalysisClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           data[[method2]] <- jmvcore::toNumeric(data[[method2]])
 
           # calculate the results
-          results <- blandr.statistics( data[[method1]] , data[[method2]] )
+          results <- statistics( data[[method1]] , data[[method2]] )
 
           # create a nice table
           table <- self$results$table
@@ -64,7 +64,7 @@ jamoviBAanalysisClass <- if (requireNamespace('jmvcore')) R6::R6Class(
             #else { titleOfPlot <- self$options$titleOfPlot }
 
           plotData <- image$state
-          plot <-  blandr.plot.ggplot( statistics.results = plotData ,
+          plot <-  plot.ggplot( statistics.results = plotData ,
                                   plotTitle = "Bland-Altman plot" ,
                                   ciDisplay = self$options$ciDisplay ,
                                   ciShading = self$options$ciShading ,

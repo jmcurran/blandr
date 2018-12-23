@@ -21,7 +21,7 @@ jamoviBAstatsClass <- if (requireNamespace('jmvcore')) R6::R6Class(
           data[[method2]] <- jmvcore::toNumeric(data[[method2]])
 
           # calculate the results
-          results <- blandr.statistics( data[[method1]] , data[[method2]] )
+          results <- statistics( data[[method1]] , data[[method2]] )
 
           # convert the results into output
           # print for R terminal output

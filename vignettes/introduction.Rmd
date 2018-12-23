@@ -71,20 +71,20 @@ We want to use the Bland-Altman 1986 data which provides comparative PEFR data a
 
 ## Basic use of the Bland-Altman functions
 
-To start using this package, we can use the "blandr.statistics" function. This is an important function, that most of the other functions in the package rely upon.
+To start using this package, we can use the "statistics" function. This is an important function, that most of the other functions in the package rely upon.
 
 The function relies on 2 mandatory parameters, and an optional significance level for confidence intervals. The two mandatory parameters are two lists of numbers. These need to be paired for the function to work.
 
 You can see the output the function generates below.
 
 ```{r}
-blandr.statistics ( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , sig.level=0.95 )
+statistics ( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , sig.level=0.95 )
 ```
 
 The function allows you to transfer the values to a list. This can be useful if you want to use your own custom graphing routines.
 
 ```{r}
-stats.data <- blandr.statistics ( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , sig.level=0.95 )
+stats.data <- statistics ( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , sig.level=0.95 )
 summary(stats.data)
 stats.data
 ```
@@ -100,32 +100,32 @@ stats.data[6]
 
 ## Bland-Altman display
 
-The Bland-Altman display function takes the output of the 'blandr.statistics' function, and formats it into a nice form.
+The Bland-Altman display function takes the output of the 'statistics' function, and formats it into a nice form.
 
 ```{r}
-blandr.output.text ( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , sig.level=0.95 )
+output.text ( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , sig.level=0.95 )
 ```
 
 ## Bland-Altman plots
-To draw basic Bland-Altman plots use the *blandr.draw* function. The function only has two mandatory parameters.
+To draw basic Bland-Altman plots use the *draw* function. The function only has two mandatory parameters.
 
 ```{r, fig.width=6, fig.height=5}
-blandr.draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst )
+draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst )
 ```
 
 As can be seen from above, the display of confidence intervals, and shading of these intervals is turned on by default. You can turn these off using the following options.
 
 ```{r, fig.width=6, fig.height=5}
-blandr.draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , ciDisplay = FALSE , ciShading = FALSE )
+draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , ciDisplay = FALSE , ciShading = FALSE )
 ```
 
-Whilst the vignette only serves as an introduction to the *blandr.draw* function, you can read through the R auto-generated manual to get an idea of the breadth of optional parameters that can be passed through.
+Whilst the vignette only serves as an introduction to the *draw* function, you can read through the R auto-generated manual to get an idea of the breadth of optional parameters that can be passed through.
 
 ### Can I customise other parts of the charts?
 
-One of the most useful uses of the *blandr.draw* function, when used in the default ggplot2 mode, is to output and save the raw ggplot drawing instructions. Further graphics can then be appended in the usual ggplot manner e.g.:
+One of the most useful uses of the *draw* function, when used in the default ggplot2 mode, is to output and save the raw ggplot drawing instructions. Further graphics can then be appended in the usual ggplot manner e.g.:
 ```{r, fig.width=6, fig.height=5}
-vignette.chart <- blandr.draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst )
+vignette.chart <- draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst )
 vignette.chart
 vignette.chart <- vignette.chart + geom_vline( xintercept = 300 , linetype = 4 , col=6 )
 vignette.chart
@@ -136,8 +136,8 @@ vignette.chart
 Another method of creating custom charts is to call all the functions separately, and then plotting however you want with the data, e.g.,
 
 ```{r, fig.width=6, fig.height=5}
-wright.stats <- blandr.statistics( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst )
-wright.plot <- blandr.plot.limits (wright.stats )
+wright.stats <- statistics( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst )
+wright.plot <- plot.limits (wright.stats )
 plot( x=wright.stats$means , y=wright.stats$differences )
 ```
 
@@ -145,14 +145,14 @@ Imagination and creativity is the only thing you need now!
 
 ### I hate the plot limits!
 
-When the *blandr.draw* function is called, it passes the data first to the *blandr.statistics* function, then to the *blandr.plot.limits* function. The *blandr.plot.limits* function attempts to calculate the "optimal" limits for the X- and Y- axes; this is based on values generated for the confidence intervals of the limits of agreement. However this might not always be what the user wishes.
+When the *draw* function is called, it passes the data first to the *statistics* function, then to the *plot.limits* function. The *plot.limits* function attempts to calculate the "optimal" limits for the X- and Y- axes; this is based on values generated for the confidence intervals of the limits of agreement. However this might not always be what the user wishes.
 
-The *blandr.plot.limits* forces limits on the rplot charts, but *not* the ggplot charts. The ggplot function chooses the limits automatically from the data. However one of the benefits of ggplot, as noted above, is its customisability: the limits can be added on later on.
+The *plot.limits* forces limits on the rplot charts, but *not* the ggplot charts. The ggplot function chooses the limits automatically from the data. However one of the benefits of ggplot, as noted above, is its customisability: the limits can be added on later on.
 
 If we consider the default Bland-Altman chart again:
 
 ```{r, fig.width=6, fig.height=5}
-blandr.draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , ciDisplay = FALSE )
+draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , ciDisplay = FALSE )
 ```
 
 The confidence intervals are switched off to allow comparison to figure 2 of Bland and Altman's 1986 paper. We can see the "calculated optimal" axes mean that the lowest value on the x-axis is roughly 200.
@@ -161,14 +161,14 @@ One method is calling the function, and appending further ggplot instructions to
 
 (1) This is the original chart, saved as a ggplot object
 ```{r, fig.width=6, fig.height=5}
-vignette.chart <- blandr.draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , ciDisplay = FALSE )
+vignette.chart <- draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , ciDisplay = FALSE )
 vignette.chart
 ```
 
 (2) We can then change the chart to use the calculated plot limits. (In reality you can change this to any limits you want)
 ```{r, fig.width=6, fig.height=5}
-wright.stats <- blandr.statistics( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst )
-wright.plot <- blandr.plot.limits (wright.stats )
+wright.stats <- statistics( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst )
+wright.plot <- plot.limits (wright.stats )
 vignette.chart.2 <- vignette.chart + ggplot2::coord_cartesian( xlim=c( wright.plot$x_lower , wright.plot$x_upper ) , ylim=c( wright.plot$y_lower , wright.plot$y_upper ) )
 vignette.chart.2
 ```
@@ -190,5 +190,5 @@ The benefits of forcing chart limits means that you can have multiple charts usi
 You can use R's built in plotting tools, but adding the switch *plotter="rplot"* as shown below:
 
 ```{r, fig.width=6, fig.height=5}
-blandr.draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , plotter="rplot" )
+draw( bland.altman.PEFR.1986$WrightFirst , bland.altman.PEFR.1986$MiniWrightFirst , plotter="rplot" )
 ```

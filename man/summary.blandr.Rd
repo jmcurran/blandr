@@ -7,18 +7,18 @@
 \method{summary}{blandr}(x, digits = getOption("digits"), ...)
 }
 \arguments{
-\item{x}{the results from \code{blandr.statistics}.}
+\item{x}{the results from \code{statistics}.}
 
 \item{digits}{number of significant digits to be used.}
 
 \item{...}{other arguments.}
 }
 \description{
-Displays a summary of a blandr object, the result from \code{blandr.statistics}
+Displays a summary of a blandr object, the result from \code{statistics}
 }
 \examples{
 
-results = blandr.statistics(Method.B ~ Method.A, data = giavarina.2015)
+results = statistics(Method.B ~ Method.A, data = giavarina.2015)
 summary(results)
 
 }

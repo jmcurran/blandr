@@ -16,7 +16,7 @@
   assume.differences.are.normal = TRUE, ...)
 }
 \arguments{
-\item{x}{a blandr class object, the results from \code{blandr.statistics}.}
+\item{x}{a blandr class object, the results from \code{statistics}.}
 
 \item{...}{other arguments.}
 }
@@ -26,7 +26,7 @@ using ggplot2 drawing functions
 }
 \examples{
 
-results = blandr.statistics( Method.B ~ Method.A , data = giavarina.2015 )
+results = statistics( Method.B ~ Method.A , data = giavarina.2015 )
 results
 ggplot(results)
 
